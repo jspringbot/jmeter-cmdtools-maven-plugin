@@ -33,7 +33,7 @@ public class CmdToolsMojo extends AbstractMojo {
     @Parameter(required = true, defaultValue = "org.jspringbot.jmeter.cmdtools.plugin.CustomAggregateReport")
     private String pluginType;
 
-    @Parameter(required = true, defaultValue = "${project.build.directory}")
+    @Parameter(required = true, defaultValue = "${project.build.directory}/jmeter/results")
     private File targetDirectory;
 
     public void setGeneratePng(String generatePng) {
