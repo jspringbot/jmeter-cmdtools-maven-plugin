@@ -36,6 +36,15 @@ public class CmdToolsMojo extends AbstractMojo {
     @Parameter(required = true, defaultValue = "${project.build.directory}/jmeter/results")
     private File targetDirectory;
 
+    @Parameter
+    private String includeLabels;
+
+    @Parameter(defaultValue = "800")
+    private int width;
+
+    @Parameter(defaultValue = "600")
+    private int height;
+
     public void setGeneratePng(String generatePng) {
         this.generatePng = generatePng;
     }
@@ -78,11 +87,23 @@ public class CmdToolsMojo extends AbstractMojo {
             if(StringUtils.isNotBlank(generatePng)) {
                 worker.addExportMode(PluginsCMDWorker.EXPORT_PNG);
                 worker.setOutputPNGFile(new File(targetDirectory, generatePng).getAbsolutePath());
+
+                if(width > 0) {
+                    worker.setGraphWidth(width);
+                }
+
+                if(height > 0) {
+                    worker.setGraphHeight(height);
+                }
             }
 
             if(StringUtils.isNotBlank(generateCsv)) {
                 worker.addExportMode(PluginsCMDWorker.EXPORT_CSV);
                 worker.setOutputCSVFile(new File(targetDirectory, generateCsv).getAbsolutePath());
+            }
+
+            if(StringUtils.isNotBlank(includeLabels)) {
+                worker.setIncludeLabels(includeLabels);
             }
 
             worker.setPluginType(pluginType);
