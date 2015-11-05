@@ -55,13 +55,13 @@ public class CustomAggregateReport extends AbstractGraphPanelVisualizer {
         "average",
         "median",
         "90%",
-            "95%",
-            "99%",
-            "min",
+        "95%",
+        "99%",
+        "min",
         "max",
         "error%",
         "rate",
-        "bandwidth",
+        "KB/sec",
         "stddev",};
     private final String TOTAL_ROW_LABEL = JMeterUtils.getResString("aggregate_report_total_label");
     private JTable myJTable;
@@ -86,8 +86,8 @@ public class CustomAggregateReport extends AbstractGraphPanelVisualizer {
                     new Functor("getMeanAsNumber"),
                     new Functor("getMedian"),
                     new Functor("getPercentPoint",new Object[]{new Float(.900)}),
-                        new Functor("getPercentPoint",new Object[]{new Float(.950)}),
-                        new Functor("getPercentPoint",new Object[]{new Float(.990)}),
+                    new Functor("getPercentPoint",new Object[]{new Float(.950)}),
+                    new Functor("getPercentPoint",new Object[]{new Float(.990)}),
                     new Functor("getMin"),
                     new Functor("getMax"),
                     new Functor("getErrorPercentage"),
@@ -114,14 +114,13 @@ public class CustomAggregateReport extends AbstractGraphPanelVisualizer {
             null, // Mean
             null, // median
             null, // 90%
-                null, // 95%
-                null, // 99%
-
+            null, // 95%
+            null, // 99%
             null, // Min
             null, // Max
             new NumberRenderer("#0.00%"), // Error %age
-            new RateRenderer("#.0"), // Throughput
-            new NumberRenderer("#.0"), // pageSize
+            new RateRenderer("#.00"), // Throughput
+            new NumberRenderer("#.00"), // pageSize
             new NumberRenderer("#0.00"), // Std Dev.
         };
 
@@ -133,9 +132,9 @@ public class CustomAggregateReport extends AbstractGraphPanelVisualizer {
             null, // Mean
             null, // median
             null, // 90%
-                null, // 95%
-                null, // 99%
-                null, // Min
+            null, // 95%
+            null, // 99%
+            null, // Min
             null, // Max
             new DecimalFormat("#0.00%"), // Error %age
             new DecimalFormat("#.0"), // Throughput
